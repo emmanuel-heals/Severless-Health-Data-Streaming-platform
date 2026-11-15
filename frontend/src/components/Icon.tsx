@@ -41,6 +41,21 @@ const paths: Record<string, JSX.Element> = {
   ),
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  file: (
+    <>
+      <path d="M6 2h8l4 4v16H6z" />
+      <path d="M14 2v4h4M9 13h6M9 17h6" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="M21 21l-4.3-4.3" />
+    </>
+  ),
+  plus: <path d="M12 5v14M5 12h14" />,
+  trash: <path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M6 7l1 13h10l1-13" />,
+  upload: <path d="M12 16V4M7 9l5-5 5 5M4 20h16" />,
 };
 
 export function Icon({
