@@ -42,6 +42,20 @@ export function formatDateTime(iso: string): string {
   });
 }
 
+/** Short relative time, e.g. "just now", "3m ago", "2h ago", else a short date. */
+export function timeAgo(iso: string): string {
+  const then = new Date(iso).getTime();
+  if (Number.isNaN(then)) return '';
+  const secs = Math.max(0, Math.round((Date.now() - then) / 1000));
+  if (secs < 10) return 'just now';
+  if (secs < 60) return `${secs}s ago`;
+  const mins = Math.round(secs / 60);
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
 /** Age in whole years from an ISO date (YYYY-MM-DD or full ISO). Empty string if unknown. */
 export function ageFrom(dob: unknown): string {
   if (typeof dob !== 'string' || !dob) return '';

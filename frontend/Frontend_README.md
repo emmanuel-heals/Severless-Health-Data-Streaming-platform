@@ -149,6 +149,8 @@ always carry **black** text. Each component uses a CSS Module (`*.module.css`) n
 | `ToastProvider` + `useToast()` | `components/feedback/ToastProvider.tsx` | success/error notifications |
 | `EmptyState` | `components/feedback/EmptyState.tsx` | friendly "nothing here yet" blocks |
 | `AppShell` | `components/layout/AppShell.tsx` | the whole signed-in layout frame |
+| `TrendChart` / `CategoryBarChart` | `components/charts/Chart.tsx` | themed Plotly charts, **lazy-loaded** (Plotly is code-split so it never bloats the initial bundle) |
+| `IncomingFeed` | `components/analytics/IncomingFeed.tsx` | live, polling incoming-records feed (de-identified) |
 
 ---
 
