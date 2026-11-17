@@ -54,7 +54,7 @@ npm run build       # type-check (tsc) + production build into dist/
 npm run preview     # serve the production build locally
 npm run typecheck   # type-check only, no build
 npm run lint        # ESLint (when configured)
-npm run test        # unit tests (Vitest) — added in a later phase
+npm run test        # unit + integration + accessibility (axe) tests — Vitest
 ```
 
 ### Switching to a real backend later
@@ -193,9 +193,21 @@ the HTTP implementation in the same file. Nothing else needs to change.
 Edit the variables in `src/theme/tokens.css`. The palette is fixed by the project spec, so normally
 you would only adjust spacing/typography tokens — not the five brand colours.
 
+### Tests & CI
+Tests use **Vitest + Testing Library + axe-core** (accessibility). The harness lives in `src/test/`
+(`renderWithProviders`, `seedMockSession`, `expectNoA11yViolations`). Test files sit next to the code
+they cover as `*.test.ts(x)` and run against the mock data layer — no backend needed.
+```bash
+npm test            # run everything once
+npm run typecheck   # types only
+```
+GitHub Actions (`.github/workflows/ci.yml`, at the repo root) runs **type-check → tests → build** on
+every push and PR.
+
 ### Before you commit
 ```bash
 npm run build     # must pass (type-check + production build)
+npm test          # must pass (unit + integration + axe)
 ```
 
 ---
